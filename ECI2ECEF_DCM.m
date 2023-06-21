@@ -1,4 +1,4 @@
-function DCM = ECI2ECEF_ DCM(time)
+function DCM = ECI2ECEF_DCM (time)
 
 jd= juliandate(time);
 
