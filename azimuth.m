@@ -1,14 +1,15 @@
 function az= azimuth(ENU)
 
-for i = 1:size(ENU,1);
 
-    az(i) = atan2(ENU(1,1), ENU(1,2));
+ az = atan2(ENU(:,1), ENU(:,2));
 
-    if az(i)<0
+[p,q]= size(az);
+
+for i = 1:1:p
         az(i)= az(i)+ 2*pi;
-    end
+end
 
     az(i)= az(i)*180/pi;
-end
+
 
 end
