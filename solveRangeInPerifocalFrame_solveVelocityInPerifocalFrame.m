@@ -1,19 +1,28 @@
-function R= rangeInPQW(semimajor_axis, eccentricity, true_anomaly)
+function R= solveRangeInPerifocalFrame(semimajor_axis, eccentricity, true_anomaly)
 
-r= semimajor_axis/(1+eccentricity*cos(true_anomaly))
+a = semimajor_axis;
+e =eccentricity;
+v =true_anomaly*pi/180;
 
-R=[r*cos(true_anomaly); r*sin(true_anomaly); 0]
+r= a*(1-e^2)/ (1+e*cos(v));
+
+R=[r*cos(v); r*sin(v); 0];
+
 
 end 
 
 
-function V= velocityInPQW(semimajor_axis, eccentricity, true_anomaly)
+function V= solveVelocityInPerifocalFrame(semimajor_axis, eccentricity, true_anomaly)
 
-u=3.98604418*10^5 % unit:[km^3/s^2]
+a = semimajor_axis;
+e =eccentricity;
+v =true_anomaly*pi/180;
 
-r= semimajor_axis/(1+eccentricity*cos(true_anomaly))
+u=3.98604418*10^5; % unit:[km^3/s^2]
 
-V=sqrt(u/semimajor_axis)*[-sin(true_anomaly); eccentricity+cos(true_anomaly);0]
+r= a*(1-e^2);
+
+V=sqrt(u/r)*[-sin(v); e+cos(v);0];
 
 end
 
